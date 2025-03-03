@@ -6,10 +6,11 @@ import (
 )
 
 func main() {
+	storage := db.Storage{}
+	storage.Connect()
 	server := api.Server{}
-	server.Init()
-	db := db.Storage{}
-	db.Connect()
-	db.PrintAll()
+	server.RoutesInit(&storage)
+	
+	storage.PrintAll()
 	server.Run()
 }

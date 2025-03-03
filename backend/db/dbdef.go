@@ -8,7 +8,7 @@ import (
 )
 
 type Storage struct {
-	db *sql.DB
+	Dbptr *sql.DB
 }
 
 func (z *Storage) Connect() {
@@ -17,7 +17,7 @@ func (z *Storage) Connect() {
 		Passwd: "jdleegrb",
 		Net:    "tcp",
 		Addr:   "127.0.0.1:3306",
-		DBName: "world",
+		DBName: "regsys",
 	}
 	dsnstring := cfg.FormatDSN()
 
@@ -25,9 +25,8 @@ func (z *Storage) Connect() {
 	if err != nil {
 		panic(err)
 	}
-	z.db = db
-
-	if pingerr := z.db.Ping(); pingerr != nil {
+	z.Dbptr = db
+	if pingerr := z.Dbptr.Ping(); pingerr != nil {
 		panic(pingerr)
 	}
 	log.Printf("db connection successful")
@@ -39,9 +38,9 @@ type entry struct {
 
 func (z *Storage) PrintAll() {
 	sqlcomm := `
-	SELECT Name FROM city LIMIT 20
+	SELECT username FROM users LIMIT 20
 	`
-	rows, err := z.db.Query(sqlcomm)
+	rows, err := z.Dbptr.Query(sqlcomm)
 	if err != nil {
 		log.Println(err.Error())
 	}
@@ -49,7 +48,7 @@ func (z *Storage) PrintAll() {
 	for rows.Next() {
 		var entryy entry
 		if err := rows.Scan(&entryy.Name); err != nil {
-			log.Println("row scann error:", err.Error())
+			log.Println("row scan error:", err.Error())
 		} else {
 			log.Println(entryy)
 		}
