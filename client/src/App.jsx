@@ -33,7 +33,7 @@ function App() {
       <button onClick={handleSignup}>Sign Up</button>
       <button onClick={handleLogin}>Login</button>
       <button onClick={handleOldCookies}>Old Cookies</button>
-      <button onClick={handleLogout}>Log Out.</button>
+      <button onClick={handleLogout}>Log Out</button>
     </div>
   );
 
