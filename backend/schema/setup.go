@@ -1,3 +1,5 @@
+// this file can be run as a standalone program when needed to setup the main table
+
 package main
 
 import (
