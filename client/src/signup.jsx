@@ -26,7 +26,7 @@ export default function Signup () {
                 navigate('/oldcookies');
             } else {
         
-                alert.error('Signup failed');
+                alert('Signup failed');
             }
         } catch (error) {
             console.error('Error:', error);

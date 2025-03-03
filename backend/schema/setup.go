@@ -10,16 +10,6 @@ import (
 )
 
 func main() {
-	sqlcomm := `
-	CREATE TABLE IF NOT EXISTS users (
-		id int not null auto_increment primary key,
-    	username varchar(250) not null unique,
-    	pwdhash varchar(250) not null,
-    	salt varchar(250) not null,
-    	session varchar(250)
-	);
-	`
-
 	cfg := mysql.Config{
 		User:   "root",
 		Passwd: "jdleegrb",
@@ -38,6 +28,15 @@ func main() {
 		panic(pingerr)
 	}
 
+	sqlcomm := `
+	CREATE TABLE IF NOT EXISTS users (
+		id int not null auto_increment primary key,
+    	username varchar(250) not null unique,
+    	pwdhash varchar(250) not null,
+    	salt varchar(250) not null,
+    	session varchar(250)
+	);
+	`
 	_, err = db.Exec(sqlcomm)
 	if err != nil {
 		log.Fatalln("could not create the table")

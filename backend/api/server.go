@@ -22,6 +22,7 @@ func (svr *Server) RoutesInit(storage *db.Storage) {
 	svr.svreng.POST("/signup", Signup)
 	svr.svreng.POST("/login", Login)
 	svr.svreng.GET("/oldcookies", ReturnOldSessions)
+	svr.svreng.GET("/logout", Logout)
 }
 
 

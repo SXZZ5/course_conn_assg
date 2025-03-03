@@ -7,7 +7,7 @@ import (
 
 func (z *Storage) CheckSession(idstr, session string) error {
 	id, _ := strconv.Atoi(idstr)
-	sqlcomm := "SELECT (id, session) from users where id=?"
+	sqlcomm := "SELECT id, session from users where id=?"
 	row := z.Dbptr.QueryRow(sqlcomm, id)
 
 	var (
